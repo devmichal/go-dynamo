@@ -31,7 +31,7 @@ func (h *CommissionRepository) CreateCommission(commission *model.Commission) er
 				N: aws.String(strconv.Itoa(commission.Status)),
 			},
 			"Price": {
-				S: aws.String(strconv.FormatFloat(commission.Price, 'E', 2, 32)),
+				N: aws.String(strconv.FormatFloat(commission.Price, 'E', 2, 64)),
 			},
 			"CreatedAt": {
 				S: aws.String(commission.CreatedAt),

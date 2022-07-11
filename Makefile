@@ -1,7 +1,5 @@
-SWAGGER_OUT_DIR ?= api/swagger
-RUN_ARGS :=
 
-watch:
+hot:
 	nodemon --exec go run -mod=vendor cmd/main.go server $* --signal SIGTERM
 
 local-setup:
