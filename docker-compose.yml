@@ -1,0 +1,35 @@
+---
+
+version: "3.7"
+
+services:
+    dev-container:
+        image: registry.gitlab.com/musement/golang/docker:1.15-dev
+        container_name: pricing-service-dev-container
+        command: sleep infinity
+        volumes:
+            - /tmp:/tmp
+            - ${PWD}:${PWD}
+            - /var/run/docker.sock:/var/run/docker.sock:rw
+        privileged: true
+        depends_on:
+            - db
+
+    db:
+        image: postgres
+        restart: always
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: commission
+            POSTGRES_PASSWORD: pass
+            POSTGRES_USER: user
+
+    dynamo:
+        command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+        image: amazon/dynamodb-local:latest
+        ports:
+            - "8000:8000"
+        volumes:
+            - "./docker/dynamodb:/home/dynamodblocal/data"
+        working_dir: /home/dynamodblocal

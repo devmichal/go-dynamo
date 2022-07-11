@@ -1,0 +1,28 @@
+---
+
+version: "3.7"
+
+x-common-environment: &commonEnvironment
+    POSTGRES_USER: ${POSTGRES_USER}
+    POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    POSTGRES_DB: ${POSTGRES_DB}
+    DB_HOST: ${DB_HOST}
+    DB_PORT: ${DB_PORT}
+    DB_USER: ${POSTGRES_USER}
+    DB_PASSWORD: ${POSTGRES_PASSWORD}
+    DB_NAME: ${POSTGRES_DB}
+    CORE_BASE_URL: ${CORE_BASE_URL}
+    CORE_CLIENT_ID: ${CORE_CLIENT_ID}
+    CORE_CLIENT_SECRET: ${CORE_CLIENT_SECRET}
+    CORS_ALLOW_ORIGIN: ${CORS_ALLOW_ORIGIN}
+
+services:
+    dev-container:
+        ports:
+            - "3000:3000"
+        environment: *commonEnvironment
+
+    db:
+        ports:
+            - "${DB_PORT}:${DB_PORT}"
+        environment: *commonEnvironment
