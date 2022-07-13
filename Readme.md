@@ -5,7 +5,7 @@
 
 ## For better your work install:
 
-### nodemon is to rebuild your project in real time
+### nodemon is for rebuilt your project in real time
 
     npm install -g nodemon
 
