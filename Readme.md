@@ -1,7 +1,7 @@
 # GO projects with Amazon DynamoDB
 
-![](/docker/img/img.png =300x200)
-![](/docker/img/img_1.png =300x200)
+<img src="docker/img/img.png" alt="drawing" width="300" height="150"/>
+<img src="docker/img/img_1.png" alt="drawing" width="300" height="150"/>
 
 ## For better your work install:
 
