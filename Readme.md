@@ -21,6 +21,10 @@
 
     make local-setup
 
+### Install packages
+
+    go install
+
 ### Create a vendor
     
     make vendor
