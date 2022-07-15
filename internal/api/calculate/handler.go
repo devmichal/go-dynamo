@@ -22,12 +22,30 @@ func New(repository repository.CommissionRepository) *Handler {
 	}
 }
 
+// Handle contains the handler logic
+// @Summary Create a group of commission
+// @Router /v1/calculate [post]
+// @Accept json
+// @Produce json
+// @Param body body request.Product true "Array of uuid groups"
+// @Success 204
+// @Failure 400 {object} api.ErrorAPI "Syntax error in provided payload"
+// @Failure 401 {string} json "Unauthorized"
+// @Failure 500 {string} json "Internal Server Error"
 func (h *Handler) Handler(c echo.Context) error {
+
+	fmt.Println(c.Request())
 	request := new(request.Product)
 
 	_ = (&echo.DefaultBinder{}).Bind(request, c)
 
+	fmt.Println("––--start request----")
+	fmt.Println(request.Name)
+	fmt.Println(request.Status)
+	fmt.Println(request.Price)
 	if errParam := c.Validate(request); errParam != nil {
+
+		fmt.Println(&api.ErrorAPI{Message: fmt.Sprintf("Request Path %s", errParam.Error())})
 
 		return c.JSON(
 			http.StatusBadRequest,

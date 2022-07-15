@@ -1,3 +1,5 @@
+SWAGGER_OUT_DIR ?= api/swagger
+
 
 hot:
 	nodemon --exec go run -mod=vendor cmd/main.go server $* --signal SIGTERM
@@ -27,9 +29,9 @@ run-%:
 swagger:
 	swag init \
 		--parseDependency \
-		--output ${SWAGGER_OUT_DIR} \
+		--output api/swagger \
 		--dir cmd/server/ \
-	&& rm ${SWAGGER_OUT_DIR}/swagger.yaml
+	&& rm api/swagger/swagger.yaml
 
 test:
-	go test -v -failfast -coverprofile=coverage.out ./... && go tool cover -func=coverage.out
+	grc go test -v -failfast -coverprofile=coverage.out ./... && go tool cover -func=coverage.out

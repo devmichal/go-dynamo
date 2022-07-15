@@ -1,3 +1,7 @@
+// @title commission-service
+// @version 1.0
+// @description microservice of commission-service
+// @BasePath /
 package server
 
 import (
@@ -6,7 +10,7 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/urfave/cli/v2"
 	"musement.com/commission-service/internal/api/calculate"
-	"musement.com/commission-service/internal/api/calculateQuery"
+	"musement.com/commission-service/internal/api/getcalculate"
 	"musement.com/commission-service/internal/api/gethealthy"
 	"musement.com/commission-service/internal/database"
 	"musement.com/commission-service/internal/repository"
@@ -37,12 +41,12 @@ func Command(c *cli.Context) (err error) {
 	commissionRepository := repository.NewRuleRepository(orm)
 
 	postCalculator := calculate.New(*commissionRepository)
-	getCalculate := calculateQuery.New(*commissionRepository)
+	getCalculate := getcalculate.New(*commissionRepository)
 
 	// Route => handler
 	e.GET("/", gethealthy.Handle)
-	e.POST("/calculate", postCalculator.Handler)
-	e.GET("/calculate/:id", getCalculate.Handle)
+	e.POST("/v1/calculate", postCalculator.Handler)
+	e.GET("/v1/calculate/:id", getCalculate.Handle)
 
 	// Start server
 	fmt.Println(e.Start(":8010"))

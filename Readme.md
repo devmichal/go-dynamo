@@ -36,3 +36,7 @@
 ### Run your server
 
     make hot
+
+### Read the docs.
+
+    api/swagger/swagger.json

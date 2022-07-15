@@ -53,6 +53,12 @@ func (h *CommissionRepository) GetById(id string) *model.Commission {
 		TableName: aws.String(model.TableName),
 	})
 
+	/*	h.db.BatchGetItem(&dynamodb.BatchGetItemInput{
+		RequestItems: map[string]types.KeysAndAttributes{
+
+		}
+	})*/
+
 	if err != nil {
 		panic(err)
 	}

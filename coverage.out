@@ -1,1 +1,8 @@
 mode: set
+musement.com/commission-service/internal/model/commision.go:26.83,35.2 1 0
+musement.com/commission-service/internal/model/commision.go:37.50,38.20 1 1
+musement.com/commission-service/internal/model/commision.go:42.2,42.21 1 1
+musement.com/commission-service/internal/model/commision.go:46.2,46.50 1 1
+musement.com/commission-service/internal/model/commision.go:38.20,41.3 2 1
+musement.com/commission-service/internal/model/commision.go:42.21,45.3 2 1
+musement.com/commission-service/internal/api/gethealthy/handler.go:13.35,15.2 1 1

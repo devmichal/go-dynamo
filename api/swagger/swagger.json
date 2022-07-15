@@ -1,15 +1,14 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Musement pricing-service",
-        "title": "pricing-service",
-        "termsOfService": "https://www.musement.com",
+        "description": "microservice of commission-service",
+        "title": "commission-service",
         "contact": {},
         "version": "1.0"
     },
     "basePath": "/",
     "paths": {
-        "/healthy": {
+        "/": {
             "get": {
                 "produces": [
                     "application/json"
@@ -25,214 +24,7 @@
                 }
             }
         },
-        "/v1/channels/:channel-uuid/rulegroups/:group-uuid": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "summary": "get all rules given a group-uuid",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "The channel UUID",
-                        "name": "channel-uuid",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "The group UUID",
-                        "name": ":group-uuid",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Set this to 1 to compact the response of this endpoint.",
-                        "name": "view_grouped",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/response.Group"
-                        }
-                    },
-                    "400": {
-                        "description": "Syntax error in provided payload",
-                        "schema": {
-                            "$ref": "#/definitions/api.ErrorAPI"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "404": {
-                        "description": "Rules not found",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "object"
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/channels/{channel-uuid}/rule/{rule-uuid}": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "summary": "get a channel rule by its UUID",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "The channel UUID",
-                        "name": "channel-uuid",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "The rule UUID",
-                        "name": "rule-uuid",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/response.GetRuleResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Syntax error in provided payload",
-                        "schema": {
-                            "$ref": "#/definitions/api.ErrorAPI"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "404": {
-                        "description": "Rule not found",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/channels/{channel-uuid}/rulegroups": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "summary": "get all the channel rules with ACTIVE status",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "The channel UUID",
-                        "name": "channel-uuid",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Set this to 1 to compact the response of this endpoint.",
-                        "name": "view_grouped",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "description": "Filter the rule list by market uuid",
-                        "name": "market-uuid",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "description": "Filter the rule list by supplier uuid",
-                        "name": "supplier-uuid",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "description": "Show only the rules that do not exclude the passed activity uuid",
-                        "name": "activity-uuid",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/response.Group"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Syntax error in provided payload",
-                        "schema": {
-                            "$ref": "#/definitions/api.ErrorAPI"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "404": {
-                        "description": "Rules not found",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "object"
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            },
+        "/v1/calculate": {
             "post": {
                 "consumes": [
                     "application/json"
@@ -240,157 +32,15 @@
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Create a new pricing rule",
+                "summary": "Create a group of commission",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "The channel UUID",
-                        "name": "channel-uuid",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Array of rules specifications",
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/request.PostRulesBody"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Pricing rule created",
-                        "schema": {
-                            "$ref": "#/definitions/response.GroupCreatedResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Syntax error in provided payload",
-                        "schema": {
-                            "$ref": "#/definitions/api.ErrorAPI"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "422": {
-                        "description": "Unprocessable entities",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/api.DuplicatedRuleErrorAPI"
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/channels/{channel-uuid}/rulegroups/{group-uuid}": {
-            "put": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "summary": "Update rules by group-uuid",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "The channel UUID",
-                        "name": "channel-uuid",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "The group UUID",
-                        "name": "group-uuid",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Array of rules specifications",
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/request.PutRulesGroupBody"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Pricing rules updated",
-                        "schema": {
-                            "$ref": "#/definitions/response.GroupCreatedResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Syntax error in provided payload",
-                        "schema": {
-                            "$ref": "#/definitions/api.ErrorAPI"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "422": {
-                        "description": "Unprocessable entities",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/api.DuplicatedRuleErrorAPI"
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/channels/{channel-uuid}/rules": {
-            "delete": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "summary": "delete a group of rules",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "The channel UUID",
-                        "name": "channel-uuid",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "description": "Array of uuid groups",
                         "name": "body",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/request.DeleteRulesBody"
+                            "$ref": "#/definitions/request.Product"
                         }
                     }
                 ],
@@ -410,13 +60,50 @@
                             "type": "string"
                         }
                     },
-                    "404": {
-                        "description": "groupUUID not found",
+                    "500": {
+                        "description": "Internal Server Error",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "object"
-                            }
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/calculate/{id}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create a group of commission",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The channel UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Product"
+                        }
+                    },
+                    "400": {
+                        "description": "Syntax error in provided payload",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorAPI"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "string"
                         }
                     },
                     "500": {
@@ -430,34 +117,6 @@
         }
     },
     "definitions": {
-        "api.DuplicatedRuleDetails": {
-            "type": "object",
-            "properties": {
-                "markets_uuid": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "percentage": {
-                    "$ref": "#/definitions/request.Percentage"
-                },
-                "supplier_uuid": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.DuplicatedRuleErrorAPI": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "type": "string"
-                },
-                "rule": {
-                    "$ref": "#/definitions/api.DuplicatedRuleDetails"
-                }
-            }
-        },
         "api.ErrorAPI": {
             "type": "object",
             "properties": {
@@ -466,279 +125,42 @@
                 }
             }
         },
-        "request.DeleteRulesBody": {
+        "request.Product": {
             "type": "object",
             "required": [
-                "groupUUIDs"
+                "name"
             ],
-            "properties": {
-                "groupUUIDs": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            }
-        },
-        "request.Market": {
-            "type": "object",
-            "required": [
-                "uuid"
-            ],
-            "properties": {
-                "excluded_activities": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "uuid": {
-                    "type": "string"
-                }
-            }
-        },
-        "request.Percentage": {
-            "type": "object",
-            "required": [
-                "positive",
-                "value"
-            ],
-            "properties": {
-                "positive": {
-                    "type": "boolean"
-                },
-                "value": {
-                    "type": "number"
-                }
-            }
-        },
-        "request.PostRulesBody": {
-            "type": "object",
-            "required": [
-                "percentage"
-            ],
-            "properties": {
-                "percentage": {
-                    "$ref": "#/definitions/request.Percentage"
-                },
-                "rules": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/request.Rule"
-                    }
-                }
-            }
-        },
-        "request.PutRule": {
-            "type": "object",
-            "properties": {
-                "markets": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/request.Market"
-                    }
-                },
-                "supplier": {
-                    "type": "string"
-                }
-            }
-        },
-        "request.PutRulesGroupBody": {
-            "type": "object",
-            "required": [
-                "percentage"
-            ],
-            "properties": {
-                "percentage": {
-                    "$ref": "#/definitions/request.Percentage"
-                },
-                "rules": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/request.PutRule"
-                    }
-                }
-            }
-        },
-        "request.Rule": {
-            "type": "object",
-            "properties": {
-                "markets": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/request.Market"
-                    }
-                },
-                "supplier": {
-                    "type": "string"
-                }
-            }
-        },
-        "response.ExcludedActivity": {
-            "type": "object",
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 3
                 },
-                "uuid": {
-                    "type": "string"
-                }
-            }
-        },
-        "response.GetRulePercentage": {
-            "type": "object",
-            "properties": {
-                "positive": {
-                    "type": "boolean"
-                },
-                "value": {
+                "price": {
                     "type": "number"
-                }
-            }
-        },
-        "response.GetRuleResponse": {
-            "type": "object",
-            "properties": {
-                "market": {
-                    "$ref": "#/definitions/response.market"
-                },
-                "percentage": {
-                    "$ref": "#/definitions/response.GetRulePercentage"
                 },
                 "status": {
-                    "type": "string"
-                },
-                "supplier": {
-                    "$ref": "#/definitions/response.supplier"
-                },
-                "uuid": {
-                    "type": "string"
+                    "type": "integer"
                 }
             }
         },
-        "response.Group": {
+        "response.Product": {
             "type": "object",
             "properties": {
-                "group_uuid": {
+                "createdAt": {
                     "type": "string"
                 },
-                "percentage": {
-                    "$ref": "#/definitions/response.Percentage"
+                "id": {
+                    "type": "string"
                 },
-                "rules": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/response.Rule"
-                    }
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
                 },
                 "status": {
-                    "type": "string"
-                }
-            }
-        },
-        "response.GroupCreatedResponse": {
-            "type": "object",
-            "properties": {
-                "group_uuid": {
-                    "type": "string"
-                },
-                "rules": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            }
-        },
-        "response.Market": {
-            "type": "object",
-            "properties": {
-                "excluded_activities": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/response.ExcludedActivity"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "uuid": {
-                    "type": "string"
-                }
-            }
-        },
-        "response.Percentage": {
-            "type": "object",
-            "properties": {
-                "positive": {
-                    "type": "boolean"
-                },
-                "value": {
-                    "type": "number"
-                }
-            }
-        },
-        "response.Rule": {
-            "type": "object",
-            "properties": {
-                "market": {
-                    "$ref": "#/definitions/response.Market"
-                },
-                "supplier": {
-                    "$ref": "#/definitions/response.Supplier"
-                },
-                "uuid": {
-                    "type": "string"
-                }
-            }
-        },
-        "response.Supplier": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "uuid": {
-                    "type": "string"
-                }
-            }
-        },
-        "response.excludedActivity": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "uuid": {
-                    "type": "string"
-                }
-            }
-        },
-        "response.market": {
-            "type": "object",
-            "properties": {
-                "excluded_activities": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/response.excludedActivity"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "uuid": {
-                    "type": "string"
-                }
-            }
-        },
-        "response.supplier": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "uuid": {
-                    "type": "string"
+                    "type": "integer"
                 }
             }
         }
