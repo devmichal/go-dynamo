@@ -7,7 +7,7 @@ require (
 	github.com/go-playground/validator/v10 v10.11.0
 	github.com/google/uuid v1.3.0
 	github.com/joho/godotenv v1.4.0
-	github.com/labstack/echo/v4 v4.7.2
+	github.com/labstack/echo/v4 v4.9.0
 	github.com/stretchr/testify v1.7.0
 	github.com/swaggo/swag v1.8.3
 	github.com/urfave/cli/v2 v2.11.0
@@ -15,11 +15,8 @@ require (
 
 require (
 	github.com/KyleBanks/depth v1.2.1 // indirect
-	github.com/PuerkitoBio/purell v1.1.1 // indirect
-	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/ghodss/yaml v1.0.0 // indirect
 	github.com/go-openapi/jsonpointer v0.19.5 // indirect
 	github.com/go-openapi/jsonreference v0.20.0 // indirect
 	github.com/go-openapi/spec v0.20.6 // indirect
